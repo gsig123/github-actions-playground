@@ -15,7 +15,7 @@ const issueTitleToNotionPageTitle = (issueTitle) => {
 };
 
 const notionPagePropertiesToTitle = (notionPageProperties) => {
-  notionPageProperties?.Name?.title[0]?.plain_text ?? "";
+  return notionPageProperties.Name.title[0].plain_text;
 };
 
 async function run() {
