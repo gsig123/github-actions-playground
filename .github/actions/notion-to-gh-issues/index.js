@@ -51,7 +51,9 @@ async function run() {
     ({ properties }) => !existingIssueIds.includes(properties.title)
   );
 
-  bugsThatNeedIssuesToBeCreated.forEach(({ properties, url }) => {
+  bugsThatNeedIssuesToBeCreated.forEach((page) => {
+    console.log(page);
+    const { properties, url } = page;
     octokit.rest.issues.create({
       owner: GITHUB_USERNAME,
       repo: GITHUB_REPO_NAME,
