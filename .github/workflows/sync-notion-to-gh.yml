@@ -1,7 +1,8 @@
 name: Sync Notion Bugs to GH
 on:
-  schedule:
-    - cron: "0 0 * * *" # At the end of every day
+  [push]
+  # schedule:
+  #   - cron: "0 0 * * *" # At the end of every day
 jobs:
   Sync-Notion-Bugs-To-GH:
     runs-on: ubuntu-latest
