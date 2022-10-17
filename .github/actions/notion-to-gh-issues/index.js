@@ -55,7 +55,7 @@ async function run() {
     octokit.rest.issues.create({
       owner: GITHUB_USERNAME,
       repo: GITHUB_REPO_NAME,
-      title: notionPageTitleToIssueTitle(issueToBeCreated.id),
+      title: notionPageTitleToIssueTitle(issueToBeCreated.title),
       body: issueToBeCreated.url,
       assignees: [GITHUB_USERNAME],
     });
