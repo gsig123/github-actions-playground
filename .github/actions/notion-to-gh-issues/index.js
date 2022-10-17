@@ -48,15 +48,15 @@ async function run() {
   );
 
   const bugsThatNeedIssuesToBeCreated = newIssueCandidates.results.filter(
-    ({ title }) => !existingIssueIds.includes(title)
+    ({ properties }) => !existingIssueIds.includes(properties.title)
   );
 
-  bugsThatNeedIssuesToBeCreated.forEach((issueToBeCreated) => {
+  bugsThatNeedIssuesToBeCreated.forEach(({ properties, url }) => {
     octokit.rest.issues.create({
       owner: GITHUB_USERNAME,
       repo: GITHUB_REPO_NAME,
-      title: notionPageTitleToIssueTitle(issueToBeCreated.title),
-      body: issueToBeCreated.url,
+      title: notionPageTitleToIssueTitle(properties.title),
+      body: url,
       assignees: [GITHUB_USERNAME],
     });
   });
