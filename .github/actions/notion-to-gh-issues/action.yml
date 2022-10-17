@@ -1,7 +1,5 @@
 name: "Notion to GH Issues"
-description: |
-	This action queries a Notion database and creates GitHub Issues for the records
-	in that database with a provided property (if an issue has not been created already)
+description: "Queries a Notion database and creates GitHub Issues for the records given a condition"
 inputs:
   githubToken:
     description: "GitHub Secret"
