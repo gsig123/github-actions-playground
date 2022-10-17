@@ -47,7 +47,7 @@ async function run() {
     issueTitleToNotionPageTitle(issue.title)
   );
 
-  const bugsThatNeedIssuesToBeCreated = newIssueCandidates.filter(
+  const bugsThatNeedIssuesToBeCreated = newIssueCandidates.results.filter(
     ({ title }) => !existingIssueIds.includes(title)
   );
 
