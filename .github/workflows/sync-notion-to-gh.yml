@@ -1,0 +1,18 @@
+name: Sync Notion Bugs to GH
+on:
+  schedule:
+    - cron: "0 0 * * *" # At the end of every day
+jobs:
+  Sync-Notion-Bugs-To-GH:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Call Notion API and create issues
+        uses: ./.github/actions/notion-to-gh-issues
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          notionApiToken: ${{ secrets.NOTION_API_KEY }}
+          notionDbId: e4085f06e265450a919054c3521929f7
+          tagColumnName: Tag
+          tagValue: Bug

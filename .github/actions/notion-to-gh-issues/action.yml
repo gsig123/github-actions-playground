@@ -1,0 +1,23 @@
+name: "Notion to GH Issues"
+description: |
+	This action queries a Notion database and creates GitHub Issues for the records
+	in that database with a provided property (if an issue has not been created already)
+inputs:
+  githubToken:
+    description: "GitHub Secret"
+    required: true
+  notionDbId:
+    description: "Id for Notion database to query"
+    required: true
+  notionApiToken:
+    description: "Notion API token"
+    required: true
+  tagColumnName:
+    description: "Notion database property to look at"
+    required: true
+  tagValue:
+    description: "Notion database cell value to filter on"
+    required: true
+runs:
+  using: "node16"
+  main: "index.js"
