@@ -53,6 +53,7 @@ async function run() {
   );
 
   bugsThatNeedIssuesToBeCreated.forEach(({ properties, url }) => {
+    console.log("properties.Name.title", properties.Name.title);
     octokit.rest.issues.create({
       owner: GITHUB_USERNAME,
       repo: GITHUB_REPO_NAME,
