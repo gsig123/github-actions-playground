@@ -15,5 +15,5 @@ jobs:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           notionApiToken: ${{ secrets.NOTION_API_KEY }}
           notionDbId: 3625b79f1d2c42d39ecf1bc96ecd1ebc
-          tagColumnName: Tag
+          tagColumnName: Tags
           tagValue: Bug
