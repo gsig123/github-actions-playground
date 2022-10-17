@@ -14,6 +14,10 @@ const issueTitleToNotionPageTitle = (issueTitle) => {
   return issueTitle.split(`[Bug] `)[1];
 };
 
+const notionPagePropertiesToTitle = (notionPageProperties) => {
+  notionPageProperties?.Name?.title[0]?.plain_text ?? "";
+};
+
 async function run() {
   const githubToken = core.getInput("githubToken");
   const notionDbId = core.getInput("notionDbId");
@@ -49,15 +53,16 @@ async function run() {
 
   const bugsThatNeedIssuesToBeCreated = newIssueCandidates.results.filter(
     ({ properties }) =>
-      !existingIssueIds.includes(properties.Name.title.join(""))
+      !existingIssueIds.includes(notionPagePropertiesToTitle(properties))
   );
 
   bugsThatNeedIssuesToBeCreated.forEach(({ properties, url }) => {
-    console.log("properties.Name.title", properties.Name.title);
     octokit.rest.issues.create({
       owner: GITHUB_USERNAME,
       repo: GITHUB_REPO_NAME,
-      title: notionPageTitleToIssueTitle(properties.Name.title.join("")),
+      title: notionPageTitleToIssueTitle(
+        notionPagePropertiesToTitle(properties)
+      ),
       body: url,
       assignees: [GITHUB_USERNAME],
     });
